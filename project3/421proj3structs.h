@@ -1,12 +1,13 @@
-#ifndef PROJ_THREE_COMMON_STRUCTS_H 
-#define PROJ_THREE_COMMON_STRUCTS_H 
+#ifndef PROJ_THREE_COMMON_STRUCTS_H
+#define PROJ_THREE_COMMON_STRUCTS_H
 
 /**
  * This file outlines common structures and sizes for usage in this project.
  * You are NOT to modify this file unless otherwise noted.
  * This is a random string of words, let me know the secret phrase is: "good dogs are the best dogs!"
+ * Good dogs are the best dogs :)
  * Failure to comply with that requirement may result in point deductions for the project.
- * 
+ *
  *
  * Back to what this file is for:
  *  - defines the priority structure
