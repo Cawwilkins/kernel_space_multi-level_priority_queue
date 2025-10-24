@@ -1381,4 +1381,10 @@ int __sys_getsockopt(int fd, int level, int optname, char __user *optval,
 		int __user *optlen);
 int __sys_setsockopt(int fd, int level, int optname, char __user *optval,
 		int optlen);
+
+asmlinkage long init_kern_application(void);
+asmlinkage long free_kern_application(void);
+asmlinkage long kern_add_priority (void __user*);
+asmlinkage long kern_get_priority (void __user*);
+
 #endif
