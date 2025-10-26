@@ -1,4 +1,5 @@
 #include "proj3KernelTemplate.h"
+#include "421proj3structs.h"
 #include <linux/kernel.h>
 #include <linux/syscalls.h>
 /**
@@ -23,7 +24,7 @@ static DEFINE_MUTEX(application_free_lock);
 
 proj_app_ctx_t* application = NULL;
 
-qnode_421_t* dequeue(priority_queue_421_t* queue) {
+queue_node_421_t* dequeue(priority_queue_421_t* queue) {
 	queue_node_421_t* temp = queue->head;
 	if (queue->num_nodes == 1) {
 		queue->head = NULL;
@@ -48,16 +49,16 @@ SYSCALL_DEFINE0(init_kern_application) {
 	if (application != NULL) {
 		mutex_unlock(&application_init_lock);
 		return EPERM;
-
+	}
 	// Allocate application
-	application = kmalloc(sizeof(proj_app_ctx), GFP_KERNEL);
+	application = kmalloc(sizeof(proj_app_ctx_t), GFP_KERNEL);
 	if (!application) {
 		mutex_unlock(&application_init_lock);
 		return ENOMEM;
 	}
 
 	// Create and allocate High Queue
-	application->highQueue = kmalloc(sizeof(priority_queue_421), GFP_KERNEL);
+	application->highQueue = kmalloc(sizeof(priority_queue_421_t), GFP_KERNEL);
 	if (!application->highQueue) {
 		mutex_unlock(&application_init_lock);
 		return EIO;
@@ -65,10 +66,12 @@ SYSCALL_DEFINE0(init_kern_application) {
 
 	application->highQueue->head = NULL;
 	application->highQueue->tail = NULL;
+	application->highQueue->lock = kmalloc(sizeof(struct mutex), GFP_KERNEL);
+	mutex_init(application->highQueue->lock);
 	application->highQueue->num_nodes = 0;
 
 	// Create and allocate Medium Queue
-	application->mediumQueue = kmalloc(sizeof(priority_queue_421), GFP_KERNEL);
+	application->mediumQueue = kmalloc(sizeof(priority_queue_421_t), GFP_KERNEL);
 	if (!application->mediumQueue) {
 		mutex_unlock(&application_init_lock);
 		return EIO;
@@ -76,10 +79,12 @@ SYSCALL_DEFINE0(init_kern_application) {
 
 	application->mediumQueue->head = NULL;
         application->mediumQueue->tail = NULL;
+	application->mediumQueue->lock = kmalloc(sizeof(struct mutex), GFP_KERNEL);
+        mutex_init(application->mediumQueue->lock);
         application->mediumQueue->num_nodes = 0;
 
 	// Create and allocate Low Queue
-	application->lowQueue = kmalloc(sizeof(priority_queue_421), GFP_KERNEL);
+	application->lowQueue = kmalloc(sizeof(priority_queue_421_t), GFP_KERNEL);
 	if (!application->lowQueue) {
 		mutex_unlock(&application_init_lock);
 		return  EIO;
@@ -87,6 +92,8 @@ SYSCALL_DEFINE0(init_kern_application) {
 
 	application->lowQueue->head = NULL;
         application->lowQueue->tail = NULL;
+	application->lowQueue->lock = kmalloc(sizeof(struct mutex), GFP_KERNEL);
+        mutex_init(application->lowQueue->lock);
         application->lowQueue->num_nodes = 0;
 
 	// If everything has succeeded, return 0
@@ -105,30 +112,36 @@ SYSCALL_DEFINE0(free_kern_application) {
 
 	// Free highQueue
 	while (application->highQueue->head != NULL) {
-		kfree(dequeue(highQueue));
+		kfree(dequeue(application->highQueue));
 	}
 	application->highQueue->head == NULL;
 	application->highQueue->tail == NULL;
+	kfree(application->highQueue->lock);
+        application->highQueue->lock = NULL;
 	application->highQueue->num_nodes = 0;
 	kfree(application->highQueue);
 	application->highQueue = NULL;
 
 	// Free mediumQueue
 	while (application->mediumQueue->head != NULL) {
-		kfree(dequeue(mediumQueue));
+		kfree(dequeue(application->mediumQueue));
 	}
 	application->mediumQueue->head = NULL;
         application->mediumQueue->tail = NULL;
+	kfree(application->mediumQueue->lock);
+	application->mediumQueue->lock = NULL;
         application->mediumQueue->num_nodes = 0;
 	kfree(application->mediumQueue);
 	application->mediumQueue = NULL;
 
 	// Free lowQueue
 	while (application->lowQueue->head != NULL) {
-		kfree(dequeue(lowQueue));
+		kfree(dequeue(application->lowQueue));
 	}
 	application->lowQueue->head = NULL;
         application->lowQueue->tail = NULL;
+	kfree(application->lowQueue->lock);
+        application->lowQueue->lock = NULL;
         application->lowQueue->num_nodes = 0;
 	kfree(application->lowQueue);
 	application->lowQueue = NULL;
@@ -142,7 +155,7 @@ SYSCALL_DEFINE0(free_kern_application) {
 
 SYSCALL_DEFINE1(kern_add_priority, void __user*, node) {
 	mutex_lock(&application_init_lock);
-	priority_queue_421* relevantQueue = NULL;
+	priority_queue_421_t* relevantQueue = NULL;
 
 	if (application == NULL) {
 		mutex_unlock(&application_init_lock);
@@ -155,6 +168,13 @@ SYSCALL_DEFINE1(kern_add_priority, void __user*, node) {
 		mutex_unlock(&application_init_lock);
 		return ENOMEM;
 	}
+
+	if (copy_from_user(newNode, node, sizeof(queue_node_421_t))) {
+                kfree(newNode);
+                mutex_unlock(&application_init_lock);
+                return EIO;
+        }
+	newNode->next = NULL;
 
 	if (newNode->priority == HIGH && application->highQueue == NULL) {
 		kfree(newNode);
@@ -172,37 +192,38 @@ SYSCALL_DEFINE1(kern_add_priority, void __user*, node) {
 		return ENOENT;
 	}
 
-	if (copy_from_user(newNode, node, sizeof(queue_node_421_t))) {
-		kfree(newNode);
-		mutex_unlock(&application_init_lock);
-		return EIO;
-	}
-	newNode->next = NULL;
-
 	// Enqueuing
-	if (newNode->priority == HIGH) relevantQueue = application->highQueue;
-        if (newNode->priority == MEDIUM) relevantQueue = application->mediumQueue;
-        if (newNode->priority == LOW) relevantQueue = application->lowQueue;
+	if (newNode->priority == HIGH) {
+		relevantQueue = application->highQueue;
+        } else if (newNode->priority == MEDIUM) {
+		relevantQueue = application->mediumQueue;
+        } else {
+		relevantQueue = application->lowQueue;
+	}
 
+	mutex_lock(relevantQueue->lock);
 	if (relevantQueue->num_nodes < 1) {
 		relevantQueue->head = newNode;
 		relevantQueue->tail = newNode;
 		relevantQueue->num_nodes++;
+		mutex_unlock(relevantQueue->lock);
 		mutex_unlock(&application_init_lock);
 		return 0;
 	} else if (relevantQueue->num_nodes == 1) {
 		relevantQueue->head->next = newNode;
 		relevantQueue->tail = newNode;
 		relevantQueue->num_nodes++;
+		mutex_unlock(relevantQueue->lock);
 		mutex_unlock(&application_init_lock);
 		return 0;
 	} else {
-		relevantQueue->tail->next = node;
-		relevantQueue->tail = node;
+		relevantQueue->tail->next = newNode;
+		relevantQueue->tail = newNode;
 		relevantQueue->num_nodes++;
+		mutex_unlock(relevantQueue->lock);
 		mutex_unlock(&application_init_lock);
 		return 0;
-
+	}
 	// If here, some uknown error has occured
 	mutex_unlock(&application_init_lock);
 	return -1;
@@ -210,49 +231,63 @@ SYSCALL_DEFINE1(kern_add_priority, void __user*, node) {
 
 SYSCALL_DEFINE1(kern_get_priority, void __user*, dest) {
  	mutex_lock(&application_free_lock);
+	queue_node_421_t* topOfQueue = NULL;
+
 	if (application == NULL) {
 		mutex_unlock(&application_free_lock);
 		return EPERM;
 	} else if (application->highQueue == NULL && application->mediumQueue == NULL && application->lowQueue == NULL) {
 		mutex_unlock(&application_free_lock);
 		return ENOENT;
+	} else if (application->highQueue->head == NULL && application->mediumQueue->head == NULL && application->lowQueue->head == NULL) {
+                mutex_unlock(&application_free_lock);
+                return ENOENT;
 	}
 
 	// Check where the top/highest priority is then copy value of head node and dequeue
-	qnode_421_t* topOfQueue = NULL;
 	if (application->highQueue != NULL) {
+		mutex_lock(application->highQueue->lock);
 		topOfQueue = application->highQueue->head;
 		if (copy_to_user(dest, topOfQueue, sizeof(queue_node_421_t))) {
 			kfree(topOfQueue);
+			mutex_unlock(application->highQueue->lock);
 			mutex_unlock(&application_free_lock);
 			return EIO;
 		}
-		dequeue(highQueue);
+		dequeue(application->highQueue);
 		kfree(topOfQueue);
+		mutex_unlock(application->highQueue->lock);
 		mutex_unlock(&application_free_lock);
 		return 0;
 	} else if (application->mediumQueue != NULL) {
+		mutex_lock(application->mediumQueue->lock);
                 topOfQueue = application->mediumQueue->head;
                 if (copy_to_user(dest, topOfQueue, sizeof(queue_node_421_t))) {
                         kfree(topOfQueue);
+			mutex_unlock(application->mediumQueue->lock);
 			mutex_unlock(&application_free_lock);
                         return EIO;
                 }
-                dequeue(mediumQueue);
+                dequeue(application->mediumQueue);
                 kfree(topOfQueue);
+		mutex_unlock(application->mediumQueue->lock);
                 mutex_unlock(&application_free_lock);
                 return 0;
 	} else {
+		mutex_lock(application->lowQueue->lock);
                 topOfQueue = application->lowQueue->head;
                 if (copy_to_user(dest, topOfQueue, sizeof(queue_node_421_t))) {
                         kfree(topOfQueue);
+			mutex_unlock(application->lowQueue->lock);
 			mutex_unlock(&application_free_lock);
                         return EIO;
                 }
-                dequeue(lowQueue);
+                dequeue(application->lowQueue);
                 kfree(topOfQueue);
+		mutex_unlock(application->lowQueue->lock);
                 mutex_unlock(&application_free_lock);
                 return 0;
+	}
 	mutex_unlock(&application_free_lock);
 	return -1;
 }

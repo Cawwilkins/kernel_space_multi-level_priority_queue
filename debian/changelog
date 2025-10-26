@@ -1,0 +1,5 @@
+linux-upstream (5.15.67-cmsc421-project3-cawwilkins+-1) bullseye; urgency=low
+
+  * Custom built Linux kernel.
+
+ -- vboxuser <vboxuser@CMSC-421.myguest.virtualbox.org>  Fri, 24 Oct 2025 22:22:22 -0400

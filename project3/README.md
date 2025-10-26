@@ -40,7 +40,8 @@ A high-level description of what this project does, and how it does it.
 ... and so forth
 
 ## Sources Used
-1. source one
-2. source two
-3. source three
-... and so forth
+1. https://www.man7.org/linux/man-pages/man3.org/linux/man-pages/man3/pthread_create.3.html
+2. https://www.geeksforgeeks.org/c/multithreading-in-c/
+3. https://www.geeksforgeeks.org/cpp/how-to-create-a-thread-in-cpp/
+4. https://www.geeksforgeeks.org/c/c-typecasting/
+5. https://www.squash.io/how-to-fix-undefined-reference-to-pthread_create-in-linux/
