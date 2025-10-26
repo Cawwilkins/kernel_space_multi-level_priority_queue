@@ -30,13 +30,18 @@ queue_node_421_t* dequeue(priority_queue_421_t* queue) {
 		queue->head = NULL;
 		queue->tail = NULL;
 		queue->num_nodes--;
+		temp->next = NULL;
 		return temp;
 	} else {
 		queue->head = queue->head->next;
-			if (queue->num_nodes == 2) {
-				queue->tail = queue->head;
-			}
+		if (queue->num_nodes == 2) {
+			queue->tail = queue->head;
+		}
+		if (queue->head == NULL) {
+			queue->tail == NULL;
+		}
 		queue->num_nodes--;
+		temp->next = NULL;
 		return temp;
 	}
 	return NULL;
@@ -116,6 +121,7 @@ SYSCALL_DEFINE0(free_kern_application) {
 	}
 	application->highQueue->head == NULL;
 	application->highQueue->tail == NULL;
+	mutex_destroy(application->highQueue->lock);
 	kfree(application->highQueue->lock);
         application->highQueue->lock = NULL;
 	application->highQueue->num_nodes = 0;
@@ -128,6 +134,7 @@ SYSCALL_DEFINE0(free_kern_application) {
 	}
 	application->mediumQueue->head = NULL;
         application->mediumQueue->tail = NULL;
+	mutex_destroy(application->mediumQueue->lock);
 	kfree(application->mediumQueue->lock);
 	application->mediumQueue->lock = NULL;
         application->mediumQueue->num_nodes = 0;
@@ -140,6 +147,7 @@ SYSCALL_DEFINE0(free_kern_application) {
 	}
 	application->lowQueue->head = NULL;
         application->lowQueue->tail = NULL;
+	mutex_destroy(application->lowQueue->lock);
 	kfree(application->lowQueue->lock);
         application->lowQueue->lock = NULL;
         application->lowQueue->num_nodes = 0;
@@ -245,7 +253,7 @@ SYSCALL_DEFINE1(kern_get_priority, void __user*, dest) {
 	}
 
 	// Check where the top/highest priority is then copy value of head node and dequeue
-	if (application->highQueue != NULL) {
+	if (application->highQueue->num_nodes != 0) {
 		mutex_lock(application->highQueue->lock);
 		topOfQueue = application->highQueue->head;
 		if (copy_to_user(dest, topOfQueue, sizeof(queue_node_421_t))) {
@@ -259,7 +267,7 @@ SYSCALL_DEFINE1(kern_get_priority, void __user*, dest) {
 		mutex_unlock(application->highQueue->lock);
 		mutex_unlock(&application_free_lock);
 		return 0;
-	} else if (application->mediumQueue != NULL) {
+	} else if (application->mediumQueue->num_nodes != 0) {
 		mutex_lock(application->mediumQueue->lock);
                 topOfQueue = application->mediumQueue->head;
                 if (copy_to_user(dest, topOfQueue, sizeof(queue_node_421_t))) {
@@ -273,7 +281,7 @@ SYSCALL_DEFINE1(kern_get_priority, void __user*, dest) {
 		mutex_unlock(application->mediumQueue->lock);
                 mutex_unlock(&application_free_lock);
                 return 0;
-	} else {
+	} else if (application->lowQueue->num_nodes != 0) {
 		mutex_lock(application->lowQueue->lock);
                 topOfQueue = application->lowQueue->head;
                 if (copy_to_user(dest, topOfQueue, sizeof(queue_node_421_t))) {

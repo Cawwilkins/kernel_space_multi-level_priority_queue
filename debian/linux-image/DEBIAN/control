@@ -1,0 +1,12 @@
+Package: linux-image-5.15.67-cmsc421-project3-cawwilkins+
+Source: linux-upstream
+Version: 5.15.67-cmsc421-project3-cawwilkins+-6
+Architecture: amd64
+Maintainer: vboxuser <vboxuser@CMSC-421.myguest.virtualbox.org>
+Installed-Size: 22208
+Section: kernel
+Priority: optional
+Homepage: https://www.kernel.org/
+Description: Linux kernel, version 5.15.67-cmsc421-project3-cawwilkins+
+ This package contains the Linux kernel, modules and corresponding other
+ files, version: 5.15.67-cmsc421-project3-cawwilkins+.

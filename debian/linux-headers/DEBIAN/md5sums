@@ -1,6 +1,6 @@
 e0a22b9eaf13f2390c37bf5ecd0d7108  usr/share/doc/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/copyright
-038c50c5c7ccd40b79bb85b19969aa65  usr/share/doc/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/changelog.Debian.gz
-7006500e82d99768e3a147ec41038f90  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/.config
+86cc87005f7013d63eade0917d47bbc8  usr/share/doc/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/changelog.Debian.gz
+c807b044d0b447a35b09821d7e8c325c  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/.config
 06c3a694dfa4db03ad1c446a7ecc2f58  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/get_abi.pl
 eaf2f301d169692604f4fad822936339  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/checkpatch.pl
 33fa00c4fb9b7f376adc0adfc0f3888b  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/syscalltbl.sh
@@ -122,6 +122,7 @@ c78b38d1105b1545e7730d8f1a83d625  usr/src/linux-headers-5.15.67-cmsc421-project3
 43f2fafe7db38ea923d1390e4d54d9fd  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/coccinelle/free/clk_put.cocci
 ecf2a460dbc32f164119cc6423140fbf  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/coccinelle/free/kfree.cocci
 fb927ef9dd70cdd6186642a99de81811  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/.sign-file.cmd
+68db60484904bcecc255f1bbeb101f01  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/unifdef
 53fc52bb04c8173c7eef1bed99f265bc  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/Makefile.lib
 1cc00443d472cca0e9d797cc07fccd88  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/gdb/vmlinux-gdb.py
 5bac0c0008412b4f55847bf7b36a09ba  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/gdb/linux/genpd.py
@@ -196,6 +197,7 @@ d8af4a1a698728fca5521a4fde26a075  usr/src/linux-headers-5.15.67-cmsc421-project3
 010383c27106499edce81c137aee67d3  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/makelst
 7267de6f786c34aaf342e818d2b81fb7  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/.symbol.o.cmd
 6a3609b8a8a9b2c238f794030eb1fd5a  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/gconf.c
+18b542a3ab47ff2ddd42f696f4693ef8  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/.mconf.o.cmd
 dc0c6224088604d2dfb8d9945382ddd8  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/symbol.c
 c4ca99e59c0114b42b5affe786aebd50  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/lkc.h
 add35247636847da1e5b1f955259e02e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/.confdata.o.cmd
@@ -207,20 +209,34 @@ dffd8931673a079f41c47093e69e9276  usr/src/linux-headers-5.15.67-cmsc421-project3
 e6a62ef5e15d212fb628de76976137d0  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/.parser.tab.o.cmd
 4c3ae454c66cda8a8e09950cd4bf476e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/confdata.o
 174a8ca87d88e0f21dcd980ebe615e11  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/expr.h
+36cb7d541528633627b88db0d560337e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/mconf
 6ff07b0e6f3b6f07aef3f6bb7caf1e38  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/menu.o
 bdfcb105dceb3bd38a20703a938a5772  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/nconf.c
 0aba4498cae58405f721cf4cb8d172d8  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/gconf.glade
 a3870ed2ad5b5b185b78c1c1de4db8aa  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/nconf.gui.c
 eda8cca8e60886f6df26a50fa8f0e76f  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/merge_config.sh
 218b273983d0896d44e847df21d68268  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/lxdialog/checklist.c
+e499238bf035e4b890d7454b3ed9a0d6  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/lxdialog/.yesno.o.cmd
+5aa3cc5263226f709123953992a32e23  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/lxdialog/.checklist.o.cmd
+05bfc1ca57c8abf0e87cfba31dfae05c  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/lxdialog/inputbox.o
 db0a0bbdbcdb11004dc9eb39835de1b6  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/lxdialog/yesno.c
+4e0e31b24061e11ce37950ac4777ecc7  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/lxdialog/textbox.o
+9522ecd55fbe3312b2084aecef3e888a  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/lxdialog/.util.o.cmd
+0ef1932511ef59842cd4a2ba6d69ad8d  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/lxdialog/.textbox.o.cmd
+168dea0b42d2af454702ae34e9006e6a  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/lxdialog/.inputbox.o.cmd
 f787551ce9a353578ac006323edb5991  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/lxdialog/util.c
+0ec8e091fea47947b7baa6851c3eb949  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/lxdialog/checklist.o
 4863713bcb5747975d3ef858aff5eae7  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/lxdialog/dialog.h
+a1c996293d21ecc4c7ecd1694567b54a  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/lxdialog/menubox.o
 425468fd015511214e850317863731e3  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/lxdialog/menubox.c
+d377159fc19ecdd5ea7fdbb5fedbd338  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/lxdialog/util.o
 48cde76770c5e370d30f98f51c5a9742  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/lxdialog/textbox.c
+2c64ccbc03f956b638d48cc4546bc141  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/lxdialog/yesno.o
 f014be5185e49fa91891393a6826f3cc  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/lxdialog/inputbox.c
 de2995a553db3e9a130123a0daea1a8a  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/lxdialog/BIG.FAT.WARNING
+6d4fa3088aa257d06ff4ecaea5fdb6d2  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/lxdialog/.menubox.o.cmd
 d6fd6a2c8812bed5b7696f930d428bde  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/expr.c
+8d49efb8ee85b628e67b41d05bf69482  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/mconf.o
 10c95ec6b3f65e2aa1edf0f4eb39e012  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/menu.c
 5f796e52c1dbbbad302539f546477dd6  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/qconf-cfg.sh
 a18fdb394b70d72f9ce2e1eaae8c0f50  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/list.h
@@ -290,6 +306,7 @@ d3a54106926786ff6818b3227192d23e  usr/src/linux-headers-5.15.67-cmsc421-project3
 3a3ae882868139d91a98dd066d27647c  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/tests/choice/oldask1_config
 bb1a104652d09a26ad7dbcdfedd4a8a1  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/lexer.lex.o
 fc0afbdc19299e98a4819b1a0a785a7f  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/conf
+41d670017f909495f2019794b223366b  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/.mconf.cmd
 f504a6101ca729fa3cbbdfa011f1436d  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/conf.o
 c8e2b82d7a101bf453196f7a26ec76ea  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/util.c
 4783541cfb6db4123f2ff4b50eaed637  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/parser.tab.h
@@ -310,6 +327,7 @@ e54072b2eba7a86a861c34e80fbcf588  usr/src/linux-headers-5.15.67-cmsc421-project3
 e06ccced08243e6d83082cf2a4c9441b  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/mconf-cfg.sh
 f9381985bd8806d4daa066b4da3277a4  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/internal.h
 55c9e2f1f500693292da69a5b3076446  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/.gitignore
+70412a8a4e3de302911bfcf423a84317  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/mconf-cfg
 8e20eeacec77b4e6786bd9dace398688  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/.conf.o.cmd
 e1f008b8f5e78ca606102a8382564eb9  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/kconfig/Makefile
 de1e84e8e693e3c63fa3886eb7982fed  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/pahole-flags.sh
@@ -421,6 +439,7 @@ c6cfee9ab8fbab635441c75085ec7b01  usr/src/linux-headers-5.15.67-cmsc421-project3
 779a1732affa6dbe5b0fdfb58fa99cf2  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/asn1_compiler
 82f5cd1275964f89609d17c997977c22  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/extract-cert.c
 0a76eae53b595ed47ade9f18e715f110  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/depmod.sh
+3cd012db86be1c87ccb8dd5e39451216  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/.unifdef.cmd
 9e66d2238e2cc6a0e45766773e51a315  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/Makefile.host
 07dccd1e027ead86752c09f4737cb9c9  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/checksyscalls.sh
 98b42c5b67252b27292f1854ea7ef8b3  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/scripts/mod/.sumversion.o.cmd
@@ -861,6 +880,7 @@ d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3
 d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/BLK_DEV_INTEGRITY_T10
 d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/DRM_VMWGFX
 d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/APPLE_PROPERTIES
+d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/DEBUG_KMEMLEAK_MEM_POOL_SIZE
 d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/RD_BZIP2
 d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/TRACEPOINTS
 d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/MTRR
@@ -1393,7 +1413,7 @@ d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3
 d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/HAVE_ARCH_VMAP_STACK
 d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/SECURITY_YAMA
 d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/HAVE_DYNAMIC_FTRACE_WITH_REGS
-c90c80e01b20a6e665d05e479408da2e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/auto.conf
+5a9e6742c01ed2d4711dfc91a8c6d9ff  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/auto.conf
 d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/SERIAL_8250_SHARE_IRQ
 d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/GENERIC_TIME_VSYSCALL
 d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/TASK_XACCT
@@ -1807,6 +1827,7 @@ d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3
 d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/NET_VENDOR_NETERION
 d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/WLAN_VENDOR_REALTEK
 d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/INPUT_EVDEV
+d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/DEBUG_KMEMLEAK
 d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/PM_OPP
 d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/ARCH_USE_MEMREMAP_PROT
 d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/RD_XZ
@@ -1838,6 +1859,7 @@ d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3
 d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/ARCH_SUPPORTS_MEMORY_FAILURE
 d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/MOUSE_PS2_SYNAPTICS
 d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/X86_THERMAL_VECTOR
+d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/DEBUG_KMEMLEAK_AUTO_SCAN
 d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/NETFILTER
 d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/NET_VENDOR_CAVIUM
 d41d8cd98f00b204e9800998ecf8427e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/config/USB_DEFAULT_PERSIST
@@ -7519,8 +7541,8 @@ ca30597a1ef52d2d8d03ecb718568962  usr/src/linux-headers-5.15.67-cmsc421-project3
 d33ad8c81ceff898fd0348f1eaf04217  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/keys/asymmetric-type.h
 b6e82f97800c471274a672f152e790ea  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/keys/asymmetric-parser.h
 f6925456e210718426c99018593bd173  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/generated/bounds.h
-8c53ba0b108ab467bb4b23218886d2c7  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/generated/autoconf.h
-02da9b69216f6bf1a4700180ac75095e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/generated/compile.h
+46e6202d9a56a47bfa49b952c1f09585  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/generated/autoconf.h
+c8d17f806a295763eb0faa6e82c99661  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/generated/compile.h
 fd5884ee93baf5c7ea614d0cb63cc2fd  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/generated/utsrelease.h
 ee306ebc91ce35466ff4abc99577117d  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/generated/timeconst.h
 e24e3e805ee8e34425ffb105635f6c32  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/generated/uapi/linux/version.h
@@ -7763,7 +7785,7 @@ d19604c12bd3ad803c214eb1fc749fc8  usr/src/linux-headers-5.15.67-cmsc421-project3
 23bbb068d056a979fb822ca0bef4de8a  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/xen/grant_table.h
 53ca4cf02767ef5c09314128d892c24e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/include/xen/xenbus_dev.h
 a5adbbd3a18aa4d37f052e12bfbc7650  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/tools/objtool/objtool
-81fe6f67d22a37974cccf9880d9a359e  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/Module.symvers
+5f0b91386768c5c6a2333cf1723a7315  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/Module.symvers
 ffb6f5b941e6c02da78c3f9a85249364  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/Makefile
 bd63386d40f7e16d1bde3ceeb7a7a46b  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/arch/x86/Makefile_32.cpu
 dfe066dc1908a4c49ddf3989093b3d72  usr/src/linux-headers-5.15.67-cmsc421-project3-cawwilkins+/arch/x86/Makefile.um
