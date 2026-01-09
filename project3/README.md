@@ -1,8 +1,5 @@
-## Student Information
-- Name: Christian Wilkins
-- Email: cwilkin2@umbc.edu/va96371@umbc.edu
-- Student ID: VA96371
-- Class Section: 04-LEC (1410)
+## INFO
+This is a project from one of my classes that I have repurposed for my portfolio.
 
 ## Project Description
 This project is a multilevel priority queue implemented in the kernel. The user can push and pull nodes from it and it is threadsafe. 
@@ -12,35 +9,32 @@ It is a newly compiled kernel with the calls accessible.
 
 ## How to Configure, Compile, and Install the Custom Kernel
 1. Make new folder to place files (mkdir /usr/src/project3)
-2. Run git clone git@github.com:UMBC-CMSC421/project3-fa25-Cawwilkins.git
+2. Run git clone git@github.com:Cawwilkins/kernel_space_multi-level_priority_queue.git
 3. Set Extraversion in Makefile at root of repository
 4. If havent already, run make mrproper and make xconfig
-5. Run curl https://userpages.cs.umbc.edu/lsebald1/cmsc421-fa2022/dotconfig > ./.config, to speed up process
-6. Run make bindeb-pkg -j$(nproc)
-7. Go up one folder
-8. Run Sudo dpkg -i {highestNumberCustomDebFile}.deb
-9. Restart machine and select kernel version with earlier set Extraversion
-10. Kernel is now installed!
+5. Run make bindeb-pkg -j$(nproc)
+6. Go up one folder
+7. Run Sudo dpkg -i {highestNumberCustomDebFile}.deb
+8. Restart machine and select kernel version with earlier set Extraversion
+9. Kernel is now installed!
 
 ## How to Compile and Run the Proof-of-Concept Userspace Program
 1. If havent already, run make mrproper and make xconfig
-2. Run curl https://userpages.cs.umbc.edu/lsebald1/cmsc421-fa2022/dotconfig > ./.config, to speed up process
-3. Run make bindeb-pkg -j$(nproc)
-4. Go up one folder
-5. Run Sudo dpkg -i {highestNumberCustomDebFile}.deb
-6. Restart machine and select kernel version with earlier set Extraversion
-7. Navigate to root of repository, open code tests, and run make build_poc
-8. Run make run to run the proof of concept
+2. Run make bindeb-pkg -j$(nproc)
+3. Go up one folder
+4. Run Sudo dpkg -i {highestNumberCustomDebFile}.deb
+5. Restart machine and select kernel version with earlier set Extraversion
+6. Navigate to root of repository, open code tests, and run make build_poc
+7. Run make run to run the proof of concept
 
 ## How to Compile and Run the Testing Suite Userspace Program
 1. If havent already, run make mrproper and make xconfig
-2. Run curl https://userpages.cs.umbc.edu/lsebald1/cmsc421-fa2022/dotconfig > ./.config, to speed up process
-3. Run make bindeb-pkg -j$(nproc)
-4. Go up one folder
-5. Run Sudo dpkg -i {highestNumberCustomDebFile}.deb
-6. Restart machine and select kernel version with earlier set Extraversion
-7. Navigate to root of repository, open code tests, and run make build_test
-8. Run make run_t to run test suite
+2. Run make bindeb-pkg -j$(nproc)
+3. Go up one folder
+4. Run Sudo dpkg -i {highestNumberCustomDebFile}.deb
+5. Restart machine and select kernel version with earlier set Extraversion
+6. Navigate to root of repository, open code tests, and run make build_test
+7. Run make run_t to run test suite
 
 ## Known Project Issues
 1. None known
